@@ -11,7 +11,6 @@ try {
   console.log(error)
 }
 
-
 type Props = {
   name: string
 }
