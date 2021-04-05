@@ -23,16 +23,18 @@ const Wrapper = styled.section`
 `
 
 const NotesSection:React.FC = ()=>{
-  const [notes, setNotes] = useState('')
-  return(
+  const [note, setNote] = useState('')
+  return (
     <Wrapper>
       <label>
         <span>备注</span>
-        <input type="text" placeholder={"点此处添加备注"}/>
+        <input type="text"
+               placeholder={"点此处添加备注"}
+               value={note}
+               onChange={(e)=>setNote(e.target.value)}/>
       </label>
     </Wrapper>
   )
-
 }
 
 export default NotesSection

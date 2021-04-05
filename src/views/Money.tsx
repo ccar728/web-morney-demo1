@@ -15,7 +15,7 @@ function Money() {
   return (
     <MyLayout>
       <TagsSection />
-      <NotesSection />
+      <NotesSection/>
       <CategorySection>
         <ul>
           <li className="selected">支出</li>
