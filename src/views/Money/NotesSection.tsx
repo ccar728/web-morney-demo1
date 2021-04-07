@@ -22,16 +22,29 @@ const Wrapper = styled.section`
 }
 `
 
-const NotesSection:React.FC = ()=>{
-  const [note, setNote] = useState('')
+type Props = {
+  value:string;
+  onChange:(value:string)=>void
+}
+
+const NotesSection:React.FC<Props> = (props)=>{
+  const note = props.value
+  const refInput = useRef<HTMLInputElement>(null)
+  const onBlur = ()=>{
+    if(refInput.current !== null){
+      props.onChange(refInput.current.value)
+    }
+  }
   return (
     <Wrapper>
       <label>
         <span>备注</span>
         <input type="text"
                placeholder={"点此处添加备注"}
-               value={note}
-               onChange={(e)=>setNote(e.target.value)}/>
+               ref={refInput}
+               defaultValue={note}
+               onBlur={onBlur}
+        />
       </label>
     </Wrapper>
   )
