@@ -28,6 +28,10 @@ const InputWrapper = styled.div`
   margin-top: 8px;
 `
 
+const onClickBack = ()=>{
+  window.history.back()
+}
+
 const TagEdit: React.FC = ()=>{
   const {findTag, updateTag, deleteTag} = useTags()
   let {id} = useParams<Params>()
@@ -35,7 +39,7 @@ const TagEdit: React.FC = ()=>{
   return(
     <Layout>
       <TopBar>
-        <Icon name='left' />
+        <Icon name='left' onClick={onClickBack}/>
         <span>编辑标签</span>
         <Icon />
       </TopBar>

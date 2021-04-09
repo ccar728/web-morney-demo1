@@ -7,13 +7,14 @@ try {
   console.log(error)
 }
 
-type Props = {
-  name?: string
-}
+// type Props = {
+//   name?: string
+// } & React.SVGAttributes<SVGAElement>
 
-const Icon = (props: Props)=>{
+const Icon = (props: any)=>{
+  const {name, children, className, ...rest} = props
   return(
-    <svg className='icon'>
+    <svg className={`icon ${className? className:''}`} {...rest}>
       {props.name && <use xlinkHref={'#' + props.name}/>}
     </svg>
   )
