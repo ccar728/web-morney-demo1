@@ -28,26 +28,32 @@ const InputWrapper = styled.div`
   margin-top: 8px;
 `
 
-const TagEdit: React.FC = (props)=>{
-  const {findTag} = useTags()
+const TagEdit: React.FC = ()=>{
+  const {findTag, updateTag} = useTags()
   let {id} = useParams<Params>()
   const tag = findTag(parseInt(id))
   return(
     <Layout>
       <TopBar>
-        <Icon name='left'></Icon>
+        <Icon name='left' />
         <span>编辑标签</span>
         <Icon />
       </TopBar>
       <InputWrapper>
-        <Input label="标签名" type="text" placeholder="标签名"/>
+        <Input label="标签名"
+               type="text"
+               placeholder="标签名"
+               value={tag.name}
+               onChange={(e)=>{
+                 updateTag(tag.id, {name:e.target.value})
+               }}
+        />
       </InputWrapper>
       <Center>
         <Space />
         <Space />
         <Button>删除标签</Button>
       </Center>
-      <div>{tag.name}</div>
     </Layout>
 
   )

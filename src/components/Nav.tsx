@@ -41,7 +41,7 @@ const Nav = ()=>{
         <li>
           <NavLink to="/tags" activeClassName="selected">
             <Icon name="tags" />
-            标签页
+            标签
           </NavLink>
         </li>
         <li>
