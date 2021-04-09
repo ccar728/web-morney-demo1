@@ -9,7 +9,7 @@ const defaultTags = [
 ]
 
 const useTags =()=>{
-  const [tags, setTags] = useState<{id:number; name:string}[]>(defaultTags)
+  const [tags, setTags] = useState<{id:number; name:string}[]>([])
   const findTag = (id:number) => tags.filter(tag => tag.id === id)[0]
   const findTagIndex = (id:number)=>{
     let result = -1
@@ -27,10 +27,17 @@ const useTags =()=>{
   const deleteTag = (id:number)=>{
     setTags(tags.filter(tags => tags.id !== id))
   }
+  const addTag = ()=>{
+    const tagName = window.prompt('新标签的名称为：')
+    if(tagName !== null){
+      setTags([...tags,{id:createId(), name:tagName}])
+    }
+  }
 
   return{
     tags,
     setTags,
+    addTag,
     findTag,
     updateTag,
     findTagIndex,
