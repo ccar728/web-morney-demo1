@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import createId from './lib/createId';
 
 const defaultTags = [
@@ -13,9 +13,18 @@ const useTags =()=>{
   useEffect(()=>{
     setTags(JSON.parse(window.localStorage.getItem('tags') || '[]'))
   }, [])
+  const count = useRef(0)
   useEffect(()=>{
-    window.localStorage.setItem('tags', JSON.stringify(tags))
+    count.current += 1
+
+  })
+  useEffect(()=>{
+    if(count.current > 1){
+      window.localStorage.setItem('tags', JSON.stringify(tags))
+    }
+
   }, [tags])
+
   const findTag = (id:number) => tags.filter(tag => tag.id === id)[0]
   const findTagIndex = (id:number)=>{
     let result = -1
