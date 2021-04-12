@@ -1,5 +1,6 @@
 import {useEffect, useRef, useState} from 'react';
 import createId from './lib/createId';
+import useUpdate from './hooks/useUpdate';
 
 const defaultTags = [
   {id:createId(), name:'衣'},
@@ -13,17 +14,11 @@ const useTags =()=>{
   useEffect(()=>{
     setTags(JSON.parse(window.localStorage.getItem('tags') || '[]'))
   }, [])
-  const count = useRef(0)
-  useEffect(()=>{
-    count.current += 1
 
-  })
-  useEffect(()=>{
-    if(count.current > 1){
-      window.localStorage.setItem('tags', JSON.stringify(tags))
-    }
-
+  useUpdate(()=>{
+    window.localStorage.setItem('tags', JSON.stringify(tags))
   }, [tags])
+
 
   const findTag = (id:number) => tags.filter(tag => tag.id === id)[0]
   const findTagIndex = (id:number)=>{
