@@ -5,6 +5,7 @@ import NotesSection from './Money/NotesSection';
 import TagsSection from './Money/TagsSection';
 import NumPadSection from './Money/NumPadSection';
 import CategorySection from './Money/CategorySection';
+import useRecords from '../hooks/useRecords';
 
 const MyLayout = styled(Layout)`
   display: flex;
@@ -13,13 +14,15 @@ const MyLayout = styled(Layout)`
 
 type Category = '-' | '+'
 
+const defaultFormData = {
+  tagIds: [] as number[],
+  note: '',
+  category: '-'as Category,
+  amount: 0
+}
+
 function Money() {
-  const [selected, setSelected] = useState({
-    tagIds: [] as number[],
-    note: '',
-    category: '-'as Category,
-    amount: 0
-  })
+  const [selected, setSelected] = useState(defaultFormData)
 
   type Selected = typeof selected
   const onChange = (obj:Partial<Selected>) =>{
@@ -29,6 +32,13 @@ function Money() {
     })
   }
 
+  const {addRecord} = useRecords()
+  const submit = ()=>{
+    addRecord(selected)
+    alert('保存成功！')
+    setSelected(defaultFormData)
+  }
+
   return (
     <MyLayout>
       {selected.tagIds.join(',')}
@@ -36,6 +46,8 @@ function Money() {
       {selected.note}
       <hr/>
       {selected.amount}
+      <hr/>
+      {JSON.stringify(selected)}
       <TagsSection value={selected.tagIds}
                    onChange={(tagIds)=>onChange({tagIds})}
       />
