@@ -7,7 +7,7 @@ const Wrapper = styled.section`
     > li{
       width: 50%;
       text-align: center;
-      background: #c4c4c4;
+      //background: #c4c4c4;
       font-size: 24px;
       padding: 16px 0;
       position: relative;
