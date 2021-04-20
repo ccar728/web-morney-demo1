@@ -21,7 +21,7 @@ const useRecords = ()=>{
 
   useUpdate(()=>{
     window.localStorage.setItem('records', JSON.stringify(records))
-  }, [records])
+  }, records)
 
   const addRecord = (newRecord:newRecords)=>{
     const record = {...newRecord, createdAt:(new Date()).toISOString()}

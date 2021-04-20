@@ -40,7 +40,7 @@ function Statistics() {
     [K:string]:newRecords[]} = {}
   const selectedRecord = records.filter((r: { category: string; }) => r.category === category)
 
-  selectedRecord.map((r: { createdAt?: any; tagIds?: number[]; note?: string; category?: "+" | "-"; amount?: number; })=>{
+  selectedRecord.forEach((r: { createdAt?: any; tagIds?: number[]; note?: string; category?: "+" | "-"; amount?: number; })=>{
     const key = day(r.createdAt).format('YYYY-MM-DD')
     if(!(key in hash)){
       hash[key] = []

@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import React, {ChangeEventHandler} from 'react';
-import {useRef} from 'react'
 import Input from '../../components/Input';
 
 
@@ -17,7 +16,6 @@ type Props = {
 
 const NotesSection:React.FC<Props> = (props)=>{
   const note = props.value
-  const refInput = useRef<HTMLInputElement>(null)
   const onChange:ChangeEventHandler<HTMLInputElement> = (e)=>{
     props.onChange(e.target.value)
   }
